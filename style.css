@@ -1,0 +1,78 @@
+body{
+    font-size: 0px;
+    margin: 0px;
+    height: 100vh;
+    
+}
+.gameHeader{
+    height: 15%;
+    background-color: aqua;
+}
+.mainContent{
+    height: 85%;
+}
+
+.gameStats{
+    width: 20%;
+    height: 100%;
+    background-color: purple;
+    position: relative;
+    display: inline-block;
+}
+
+.gameContent{
+    width: 80%;
+    height: 100%;
+    background-color: pink;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.gameArea{
+    width: 90%;
+    height: auto;
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative;
+    background-color: rgba(41, 90, 82, .8);
+}
+
+.cardContainer{
+    width:12vw;
+    height: 12vw;
+    position: relative;
+    display: inline-block;
+}
+
+.cardWithinACard:after{
+    display: block;
+    content: "";
+    padding-bottom: 100%;
+}
+
+.cardWithinACard{
+    position: relative;
+    width: 90%;
+    height: 90%;
+    top: 5%;
+    left: 5%;
+}
+
+
+.frontcard, .backcard{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.backcard{
+    background-color: rgba(41, 90, 82, 0.5);
+    
+}
+
+.hide{
+    display: none;
+}
+
