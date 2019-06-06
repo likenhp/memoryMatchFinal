@@ -1,28 +1,40 @@
 class Card{
-    constructor(number){
+    constructor(number, cardUrl, callbacks){
         this.images = [];
-        this.pokemon = number;
         this.sprite = null;
         this.back = null;
+        this.cardHref = number;
+        this.frontCard = cardUrl;
+        this.cardContainer = null;
+        this.theCard = null;
+        this.callbacks = callbacks;
+
+        this.cardClicked = this.cardClicked.bind(this);
     }
 
     imageCreation(){
-        const col = this.pokemon % 31;
-        const row = Math.floor(this.pokemon/31);
-        this.sprite=$("<div>").css({
-            background: `url("images/black-white3x.png") calc((${col}*288%)/8640*100) calc((${row}*288%)/5760*100) / 3100% 2100%`
-        }).addClass("frontcard").attr("href", `${this.pokemon}`);
-    }
+        this.sprite = $("<video/>",{
+            id: "video",
+            src: this.frontCard,
+            type: "video/mp4",
+            controls: false,
+            autoplay: true,
+            loop: true
+        }).addClass("frontcard").attr("href", `${this.cardHref}`);
 
-    backCard(){
         this.back = $("<img>").attr(
-            "src","images/BW_Grass_Su288px.png"
+            "src","images/backofcard.jpg"
         ).addClass("backcard");
+
+        this.cardContainer = $("<div>").addClass("cardContainer").on("click", this.cardClicked);
+        this.theCard = $("<div>").addClass("cardWithinACard");
+        this.theCard.append(this.sprite, this.back);
+        this.cardContainer.append(this.theCard);
+        return this.cardContainer;
     }
 
-    callCard(){
-        this.imageCreation();
-        this.backCard();
+    cardClicked(){
+        this.callbacks.cardClick(event.currentTarget);
     }
 }
 

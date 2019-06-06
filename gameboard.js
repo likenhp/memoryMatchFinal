@@ -1,33 +1,48 @@
 class Gameboard{
-    constructor(){
+    constructor(callbacks){
         this.cardHolder = [];
-
+        this.tempHolder = [];
+        this.logo = null;
         this.matches = 0;
         this.attempts = 0;
         this.accuracy = 0;
         this.gamesPlayed = 0;
         this.displayStats = 0;
         this.resetStats = 0;
+        this.callbacks = callbacks;
+        
     }
 
     renderCard(){
-        for(var index=0; index< 9; index++){
-            const randomNum = Math.floor(Math.random()*649);
+        let tempImages = [
+            "images/Ciri.mp4",
+            "images/Cow.mp4",
+            "images/Fiend.mp4",
+            "images/Gaunter.mp4",
+            "images/Geralt.mp4",
+            "images/Ghoul.mp4",
+            "images/ImperialManticore.mp4",
+            "images/KingFoltest.mp4",
+            "images/myrgtabrakke.mp4"];
+        while(tempImages.length> 0){
+            const cardIndex = Math.floor(Math.random()*tempImages.length);
+            const removedCard = tempImages.splice(cardIndex, 1);
+            this.tempHolder.push(removedCard);
+            const randomNum = Math.floor(tempImages.length);
             for(var secondIndex = 0; secondIndex < 2; secondIndex++ ){
-                const card = new Card(randomNum);
-                card.callCard();
-                const cardContainer = $("<div>").addClass("cardContainer");
-                const theCard = $("<div>").addClass("cardWithinACard");
-                theCard.append(card.sprite, card.back);
-                cardContainer.append(theCard);
-                this.cardHolder.push(cardContainer);
+                const card = new Card(randomNum, this.tempHolder[0], this.callbacks);
+                this.cardHolder.push(card.imageCreation());
             }
+            this.tempHolder.pop();
         }
         while(this.cardHolder.length>0){
             const randomIndex = Math.floor(Math.random()*this.cardHolder.length);
             const removedCard = this.cardHolder.splice(randomIndex, 1);
             $(".gameArea").append(removedCard);
         }
+    }
+    renderLogo(){
+        $(".gameLogo").css('background-image', 'url("images/mainmenubanner.png")');
     }
 
 
