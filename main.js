@@ -7,5 +7,5 @@ var gameplay;
 function intializeApp(){
     gameplay = new Game();
     gameplay.startGame();
-    gameplay.addEventListener();
+    $(".victory").addClass("hide");
 }

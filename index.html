@@ -1,24 +1,73 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="style.css">
-        <script src="gameboard.js"></script>
-        <script src="gameplay.js"></script>
-        <script src="card.js"></script>
-        <script src="main.js"></script>
-    </head>
-    <body>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="gameboard.js"></script>
+    <script src="gameplay.js"></script>
+    <script src="card.js"></script>
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <div class="game">
+        <div class="portrait-warning">
+            <div class="warning-text">This application works best in landscape mode - please turn your device!</div>
+            <div class="warning-img">
+                <img src="images/rotate.gif" alt="please rotate">
+            </div>
+        </div>
         <div class="gameHeader">
             <div class="gameLogo"></div>
-            <div class="gameStats"></div>
+            <div class="gameStats">
+                <div class="statsContainer">
+                    <div class="games-played">
+                        <div class="label stats">Games Played</div>
+                        <div class="value"></div>
+                    </div>
+                </div>
+                <div class="statsContainer">
+                    <div class="attempts">
+                        <div class="label stats">Attempts</div>
+                        <div class="value"></div>
+                    </div>
+                </div>
+                <div class="statsContainer">
+                    <div class="accuracy">
+                        <div class="label stats">Accuracy</div>
+                        <div class="value"></div>
+                    </div>
+                </div>
+                <div class="statsContainer">
+                    <div class="buttoncontainer">
+                        <div class="label">Reset</div>
+                        <button class="reset">
+                            <img src="images/White Honey.png" alt="reset">
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="mainContent">
-                <p>hello</p>
-                <div class="gameContent">
-                    <div class="gameArea"></div>
-                </div>
+            <p>hello</p>
+            <div class="gameContent">
+                <div class="gameArea"></div>
+            </div>
         </div>
+    </div>
+    </div>
+    <div class="victory animate fadeIn">
+        <div class="victoryText">
+            Good luck on the path Witcher.
         </div>
-    </body>
+        <div class="victoryButton">
+            <button class="beginAgain">
+                <div class="beginAgainText">Begin a New Journey</div>
+            </button>
+        </div>
+        
+    </div>
+</body>
+
 </html>
