@@ -3,12 +3,7 @@ class Gameboard{
         this.cardHolder = [];
         this.tempHolder = [];
         this.logo = null;
-        this.matches = 0;
-        this.attempts = 0;
-        this.accuracy = 0;
-        this.gamesPlayed = 0;
-        this.displayStats = 0;
-        this.resetStats = 0;
+        
         this.callbacks = callbacks;
         
     }
@@ -41,9 +36,9 @@ class Gameboard{
             $(".gameArea").append(removedCard);
         }
     }
+
     renderLogo(){
         $(".gameLogo").css('background-image', 'url("images/mainmenubanner.png")');
     }
-
 
 }
