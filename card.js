@@ -1,5 +1,5 @@
-class Card{
-    constructor(number, cardUrl, callbacks){
+class Card {
+    constructor(number, cardUrl, callbacks) {
         this.images = [];
         this.sprite = null;
         this.back = null;
@@ -8,12 +8,11 @@ class Card{
         this.cardContainer = null;
         this.theCard = null;
         this.callbacks = callbacks;
-
         this.cardClicked = this.cardClicked.bind(this);
     }
 
-    imageCreation(){
-        this.sprite = $("<video/>",{
+    imageCreation() {
+        this.sprite = $("<video/>", {
             id: "video",
             src: this.frontCard,
             type: "video/mp4",
@@ -21,11 +20,9 @@ class Card{
             autoplay: true,
             loop: true
         }).addClass("frontcard").attr("href", `${this.cardHref}`);
-
         this.back = $("<img>").attr(
-            "src","images/backofcard.jpg"
+            "src", "images/backofcard.jpg"
         ).addClass("backcard");
-
         this.cardContainer = $("<div>").addClass("cardContainer").on("click", this.cardClicked);
         this.theCard = $("<div>").addClass("cardWithinACard");
         this.theCard.append(this.sprite, this.back);
@@ -33,7 +30,7 @@ class Card{
         return this.cardContainer;
     }
 
-    cardClicked(){
+    cardClicked() {
         this.callbacks.cardClick(event.currentTarget);
     }
 }
