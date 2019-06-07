@@ -1,5 +1,5 @@
-class Game{
-    constructor(){
+class Game {
+    constructor() {
         this.firstClickFront = null;
         this.secondClickFront = null;
         this.firstClickBack = null;
@@ -8,15 +8,11 @@ class Game{
         this.canClick = true;
         this.totalPossibleMatches = 9;
         this.matchCounter = 0;
-
-        this.matches = 8;
+        this.matches = 0;
         this.attempts = 0;
         this.accuracy = 0;
         this.gamesPlayed = 0;
         this.displayStats = 0;
-
-
-
         this.cardClick = this.cardClick.bind(this);
         this.congratulations = this.congratulations.bind(this);
         this.timeOut = this.timeOut.bind(this);
@@ -24,35 +20,31 @@ class Game{
         this.newGamePlus = this.newGamePlus.bind(this);
     }
 
-    addEventListener(){
+    addEventListener() {
         $(".reset").on("click", this.resetGame);
         $(".beginAgain").on("click", this.newGamePlus);
     }
 
-    cardClick(card){
+    cardClick(card) {
         const front = $(card);
         const back = $(card).find(".cardWithinACard");
-
-        if(!this.canClick){
+        if (!this.canClick) {
             return;
         }
-
-        if(this.firstClickFront === null){
+        if (this.firstClickFront === null) {
             this.firstClickBack = back;
             this.firstClickBack.addClass("onClick");
             $(card).addClass("noClick");
             this.firstClickFront = front;
             return this.firstClickFront;
-
-        }else if(this.firstClickFront !== null){
+        } else if (this.firstClickFront !== null) {
             this.canClick = false;
             this.secondClickBack = back;
             this.secondClickBack.addClass("onClick");
             $(card).addClass("noClick");
             this.secondClickFront = front;
             this.attempts++;
-
-            if(this.firstClickFront.find(".frontcard").attr("href") === this.secondClickFront.find(".frontcard").attr("href")){
+            if (this.firstClickFront.find(".frontcard").attr("href") === this.secondClickFront.find(".frontcard").attr("href")) {
                 this.firstClickFront = null;
                 this.secondClickFront = null;
                 this.firstClickBack = null;
@@ -60,11 +52,10 @@ class Game{
                 this.canClick = true;
                 this.matchCounter++;
                 this.matches++;
-                if(this.matches === this.totalPossibleMatches){
-                    setTimeout(this.congratulations,500)
+                if (this.matches === this.totalPossibleMatches) {
+                    setTimeout(this.congratulations, 500)
                 }
-
-            }else if(this.firstClickFront.find(".frontcard").attr("href") !== this.secondClickFront.find(".frontcard").attr("href")){
+            } else if (this.firstClickFront.find(".frontcard").attr("href") !== this.secondClickFront.find(".frontcard").attr("href")) {
                 setTimeout(this.timeOut, 1500);
             }
             this.accuracy = this.matches / this.attempts;
@@ -72,27 +63,27 @@ class Game{
         }
     }
 
-    resetStats(){
+    resetStats() {
         this.matches = 0;
         this.attempts = 0;
         this.accuracy = 0;
         this.renderStats();
     }
 
-    resetGame(){
+    resetGame() {
         this.gamesPlayed++;
         this.resetStats();
         $(".gameArea").empty();
         this.gameboard.renderCard();
     }
 
-    newGamePlus(){
+    newGamePlus() {
         $(".victory").addClass("hide");
         $(".game").removeClass("hide").addClass("fadeIn").addClass("animate");
         this.resetGame();
     }
 
-    timeOut(){
+    timeOut() {
         this.firstClickFront.removeClass("noClick");
         this.secondClickFront.removeClass("noClick");
         this.firstClickBack.removeClass("onClick");
@@ -104,7 +95,7 @@ class Game{
         this.canClick = true;
     }
 
-    startGame(){
+    startGame() {
         this.gameboard = new Gameboard({
             cardClick: this.cardClick,
         });
@@ -114,16 +105,15 @@ class Game{
         this.addEventListener();
     }
 
-    renderStats(){
+    renderStats() {
         $(".games-played > .value").text(this.gamesPlayed);
         $(".attempts > .value").text(this.attempts);
-        const accuracyValue = (this.accuracy*100).toFixed(2)+"%";
+        const accuracyValue = (this.accuracy * 100).toFixed(2) + "%";
         $(".accuracy > .value").text(accuracyValue);
     }
 
-    congratulations(){
+    congratulations() {
         $(".game").addClass("hide");
         $(".victory").removeClass("hide");
     }
-
 }
