@@ -18,20 +18,22 @@ class Card {
             type: "video/mp4",
             controls: false,
             autoplay: true,
-            loop: true
+            loop: true,
+            muted: true,
+            playsinline: true
         }).addClass("frontcard").attr("href", `${this.cardHref}`);
         this.back = $("<img>").attr(
             "src", "images/backofcard.jpg"
         ).addClass("backcard");
-        this.cardContainer = $("<div>").addClass("cardContainer").on("click", this.cardClicked);
-        this.theCard = $("<div>").addClass("cardWithinACard");
+        this.cardContainer = $("<div>").addClass("cardContainer");
+        this.theCard = $("<div>").addClass("cardWithinACard").on("click", this.cardClicked);
         this.theCard.append(this.sprite, this.back);
         this.cardContainer.append(this.theCard);
         return this.cardContainer;
     }
 
     cardClicked() {
-        this.callbacks.cardClick(event.currentTarget);
+        this.callbacks.cardClick($(event.currentTarget).parent());
     }
 }
 

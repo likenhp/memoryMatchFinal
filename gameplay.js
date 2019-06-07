@@ -18,11 +18,13 @@ class Game {
         this.timeOut = this.timeOut.bind(this);
         this.resetGame = this.resetGame.bind(this);
         this.newGamePlus = this.newGamePlus.bind(this);
+        this.refreshPage = this.refreshPage.bind(this);
     }
 
     addEventListener() {
         $(".reset").on("click", this.resetGame);
         $(".beginAgain").on("click", this.newGamePlus);
+        $(".gameLogo").on("click", this.refreshPage);
     }
 
     cardClick(card) {
@@ -71,10 +73,25 @@ class Game {
     }
 
     resetGame() {
-        this.gamesPlayed++;
-        this.resetStats();
-        $(".gameArea").empty();
-        this.gameboard.renderCard();
+        if(this.attempts === 0){
+            this.resetStats();
+            this.firstClickFront = null;
+            this.secondClickFront = null;
+            this.firstClickBack = null;
+            this.secondClickBack = null;
+            $(".gameArea").empty();
+            this.gameboard.renderCard();
+        }else{
+            this.gamesPlayed++;
+            this.resetStats();
+            this.firstClickFront = null;
+            this.secondClickFront = null;
+            this.firstClickBack = null;
+            this.secondClickBack = null;
+            $(".gameArea").empty();
+            this.gameboard.renderCard();
+        }
+        
     }
 
     newGamePlus() {
@@ -110,6 +127,10 @@ class Game {
         $(".attempts > .value").text(this.attempts);
         const accuracyValue = (this.accuracy * 100).toFixed(2) + "%";
         $(".accuracy > .value").text(accuracyValue);
+    }
+
+    refreshPage(){
+        window.location.reload();
     }
 
     congratulations() {
