@@ -1,5 +1,5 @@
 
-# The Witcher, Memory Matcg
+# The Witcher, Memory Match
 
 #### http://memorymatch.likenhp.com
 
