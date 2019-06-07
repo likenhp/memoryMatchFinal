@@ -8,14 +8,14 @@ class Gameboard {
 
     renderCard() {
         let tempImages = [
-            "images/Ciri.mp4",
-            "images/Cow.mp4",
-            "images/Fiend.mp4",
-            "images/Gaunter.mp4",
-            "images/Geralt.mp4",
-            "images/Ghoul.mp4",
-            "images/ImperialManticore.mp4",
-            "images/KingFoltest.mp4",
+            "images/ciri.mp4",
+            "images/cow.mp4",
+            "images/fiend.mp4",
+            "images/gaunter.mp4",
+            "images/geralt.mp4",
+            "images/ghoul.mp4",
+            "images/imperialManticore.mp4",
+            "images/kingFoltest.mp4",
             "images/myrgtabrakke.mp4"];
         while (tempImages.length > 0) {
             const cardIndex = Math.floor(Math.random() * tempImages.length);
